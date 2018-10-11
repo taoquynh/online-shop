@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/taoquynh/online-shop/model"
+	_ "github.com/online-shop/model"
 )
 
 // @Tags admin

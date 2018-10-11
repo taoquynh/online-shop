@@ -9,8 +9,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
-	"github.com/taoquynh/online-shop/config"
-	"github.com/taoquynh/online-shop/controller"
+	"github.com/online-shop/config"
+	"github.com/online-shop/controller"
 )
 
 type JsonDataRoute struct {
