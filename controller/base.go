@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/go-pg/pg"
-	"github.com/online-shop/config"
+	"online-shop/config"
 )
 
 type Controller struct {

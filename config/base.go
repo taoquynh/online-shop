@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/online-shop/helper"
+	"online-shop/helper"
 	"log"
 	"os"
 )

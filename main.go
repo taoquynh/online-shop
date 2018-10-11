@@ -5,10 +5,10 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/online-shop/config"
-	"github.com/online-shop/controller"
-	"github.com/online-shop/router"
-	"github.com/online-shop/model"
+	"online-shop/config"
+	"online-shop/controller"
+	"online-shop/router"
+	"online-shop/model"
 )
 
 func main() {

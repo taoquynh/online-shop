@@ -2,8 +2,8 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/online-shop/controller"
-	_ "github.com/online-shop/docs"
+	"online-shop/controller"
+	_ "online-shop/docs"
 )
 
 func setupAdminRoutes(c *controller.Controller, api *gin.RouterGroup) {
