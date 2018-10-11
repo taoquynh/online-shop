@@ -6,7 +6,7 @@ import (
 
 type User struct {
 	// Tên bảng
-	TableName struct{} `json:"table_name" sql:"test.users"`
+	TableName struct{} `json:"table_name" sql:"shop.users"`
 
 	// Mã User (chuỗi ngẫu nhiên duy nhất)
 	Id string `json:"id"`

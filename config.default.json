@@ -1,5 +1,5 @@
 {
-  "service_name": "onlineShop",
+  "service_name": "shop",
   "database": {
     "user": "postgres",
     "password": "123",

@@ -23,7 +23,6 @@ func MigrationDb(db *pg.DB, schema string) error {
 	// Tạo schema theo tên service
 	_, err := db.Exec("CREATE SCHEMA IF NOT EXISTS " + schema + ";")
 	if err != nil {
-		log.Println("----- ", schema)
 		return err
 	}
 
@@ -31,7 +30,6 @@ func MigrationDb(db *pg.DB, schema string) error {
 	var user User
 	err = createTable(&user, db)
 	if err != nil {
-		log.Println("----- 1")
 		return err
 	}
 
