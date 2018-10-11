@@ -1,5 +1,19 @@
-package main
+package controller
 
-func main() {
-	
+import (
+	"github.com/go-pg/pg"
+	"github.com/taoquynh/online-shop/config"
+)
+
+type Controller struct {
+	// DB instance
+	DB *pg.DB
+
+	// Configuration
+	Config config.Config
+}
+
+func NewController() *Controller {
+	var c Controller
+	return &c
 }
