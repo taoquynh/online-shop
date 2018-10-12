@@ -45,6 +45,41 @@
                 }
             }
         },
+        "/auth/create-user": {
+            "post": {
+                "description": "Register User",
+                "tags": [
+                    "admin"
+                ],
+                "parameters": [
+                    {
+                        "description": "Thông tin Register",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.CreateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
         "/auth/delete-product/{id}": {
             "delete": {
                 "description": "Xóa Product theo ID",
@@ -128,6 +163,59 @@
                 }
             }
         },
+        "/auth/get-users": {
+            "get": {
+                "description": "Lấy danh sách User",
+                "tags": [
+                    "admin"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login-user/{id}": {
+            "get": {
+                "description": "Login User theo ID",
+                "tags": [
+                    "admin"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
         "/auth/update-product/{id}": {
             "put": {
                 "description": "Cập nhật Product theo ID",
@@ -186,6 +274,19 @@
                 "quantity": {
                     "description": "Số lượng",
                     "type": "integer"
+                }
+            }
+        },
+        "model.CreateUser": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "description": "Mật khẩu phải có tối thiểu 8 ký tự",
+                    "type": "string"
+                },
+                "user_name": {
+                    "description": "Tên hiển thị",
+                    "type": "string"
                 }
             }
         },
