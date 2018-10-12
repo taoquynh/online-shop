@@ -263,13 +263,13 @@
                     "description": "Hãng sản xuất",
                     "type": "string"
                 },
+                "name": {
+                    "description": "Tên hiển thị",
+                    "type": "string"
+                },
                 "price": {
                     "description": "Giá sản phẩm",
                     "type": "integer"
-                },
-                "product_name": {
-                    "description": "Tên hiển thị",
-                    "type": "string"
                 },
                 "quantity": {
                     "description": "Số lượng",
@@ -284,7 +284,7 @@
                     "description": "Mật khẩu phải có tối thiểu 8 ký tự",
                     "type": "string"
                 },
-                "user_name": {
+                "username": {
                     "description": "Tên hiển thị",
                     "type": "string"
                 }

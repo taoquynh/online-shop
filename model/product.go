@@ -8,7 +8,7 @@ type Product struct {
 	Id string `json:"id"`
 
 	// Tên hiển thị
-	ProductName string `json:"product_name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
+	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
 	Manufacture string `json:"manufacture"`
@@ -28,7 +28,7 @@ type Product struct {
 
 type CreateProduct struct {
 	// Tên hiển thị
-	ProductName string `json:"product_name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
+	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
 	Manufacture string `json:"manufacture"`
@@ -52,7 +52,7 @@ type UpdateProduct struct {
 
 	// Tên hiển thị
 	// Tên hiển thị
-	ProductName string `json:"product_name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
+	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
 	Manufacture string `json:"manufacture"`
