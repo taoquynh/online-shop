@@ -33,6 +33,12 @@ func MigrationDb(db *pg.DB, schema string) error {
 		return err
 	}
 
+	var product Product
+	err = createTable(&product, db)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
