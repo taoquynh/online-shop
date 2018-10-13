@@ -83,7 +83,7 @@ func (c *Controller) UserLogIn(ctx *gin.Context) {
 		return
 	}
 
-	if login.Password != login.Password {
+	if login.Password != user.Password {
 		model.NewError(ctx, http.StatusNotFound, errors.New("Tài khoản không đúng"))
 		return
 	}
