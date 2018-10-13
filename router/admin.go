@@ -14,7 +14,7 @@ func setupAdminRoutes(c *controller.Controller, api *gin.RouterGroup) {
 
 	api.GET("/get-products", c.GetProducts)
 	api.POST("/create-product", c.CreateProduct)
-	api.GET("/get-products/:id", c.GetProductById)
+	api.GET("/get-product/:id", c.GetProductById)
 	api.PUT("/update-product/:id", c.UpdateProductById)
 	api.DELETE("/delete-product/:id", c.DeleteProductById)
 }

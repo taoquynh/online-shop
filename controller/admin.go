@@ -40,14 +40,7 @@ func (c *Controller) PostLogInUserById(ctx *gin.Context) {
 
 //-----
 
-// @Tags admin
-// @Description Lấy danh sách Products
-// @Success 200 {string} string
-// @Failure 500 {object} model.HTTPError
-// @Router /shop/get-products [get]
-func (c *Controller) GetProducts(ctx *gin.Context) {
-	ctx.String(http.StatusOK, "GetProducts")
-}
+
 
 // @Tags admin
 // @Description Tạo Product
@@ -110,14 +103,38 @@ func (c *Controller) UpdateProductById(ctx *gin.Context) {
 }
 
 // @Tags admin
+// @Description Lấy danh sách Products
+// @Success 200 {string} string
+// @Failure 500 {object} model.HTTPError
+// @Router /shop/get-products [get]
+func (c *Controller) GetProducts(ctx *gin.Context) {
+	var products []model.GetProducts
+	_, err := c.DB.Query(&products, `SELECT * FROM shop.products`)
+	if err != nil {
+		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co product"))
+		return
+	}
+	ctx.JSON(http.StatusOK, products)
+}
+
+
+// @Tags admin
 // @Description Lấy thông tin Product theo ID
+// @Param product body model.GetProductById true "San pham"
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
 // @Router /shop/get-product/{id} [get]
 func (c *Controller) GetProductById(ctx *gin.Context) {
+	id := ctx.Param("id")
 
-
+	var products []model.GetProductById
+	_, err := c.DB.Query(&products, `SELECT * FROM shop.products WHERE id = ?`, id)
+	if err != nil {
+		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co product"))
+		return
+	}
+	ctx.JSON(http.StatusOK, products)
 }
 
 
@@ -128,5 +145,14 @@ func (c *Controller) GetProductById(ctx *gin.Context) {
 // @Failure 500 {object} model.HTTPError
 // @Router /shop/delete-product/{id} [delete]
 func (c *Controller) DeleteProductById(ctx *gin.Context) {
-	ctx.String(http.StatusOK, "DeleteProductById")
+
+	id := ctx.Param("id")
+
+	_, err := c.DB.Exec(`DELETE FROM shop.products WHERE id = ?`, id)
+	if err != nil {
+		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co product"))
+		return
+	}
+
+	ctx.String(http.StatusOK, "Xoa thanh cong")
 }

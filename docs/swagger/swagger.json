@@ -116,6 +116,18 @@
                 "tags": [
                     "admin"
                 ],
+                "parameters": [
+                    {
+                        "description": "San pham",
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.GetProductById"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -299,6 +311,39 @@
                 "username": {
                     "description": "Tên hiển thị",
                     "type": "string"
+                }
+            }
+        },
+        "model.GetProductById": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "Mô tả sản phẩm",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Mã User (chuỗi ngẫu nhiên duy nhất)",
+                    "type": "string"
+                },
+                "image": {
+                    "description": "Ảnh sản phẩm",
+                    "type": "string"
+                },
+                "manufacture": {
+                    "description": "Hãng sản xuất",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Tên hiển thị",
+                    "type": "string"
+                },
+                "price": {
+                    "description": "Giá sản phẩm",
+                    "type": "integer"
+                },
+                "quantity": {
+                    "description": "Số lượng",
+                    "type": "integer"
                 }
             }
         },

@@ -30,6 +30,30 @@ definitions:
         description: Tên hiển thị
         type: string
     type: object
+  model.GetProductById:
+    properties:
+      description:
+        description: Mô tả sản phẩm
+        type: string
+      id:
+        description: Mã User (chuỗi ngẫu nhiên duy nhất)
+        type: string
+      image:
+        description: Ảnh sản phẩm
+        type: string
+      manufacture:
+        description: Hãng sản xuất
+        type: string
+      name:
+        description: Tên hiển thị
+        type: string
+      price:
+        description: Giá sản phẩm
+        type: integer
+      quantity:
+        description: Số lượng
+        type: integer
+    type: object
   model.HTTPError:
     properties:
       code:
@@ -138,6 +162,14 @@ paths:
   /shop/get-product/{id}:
     get:
       description: Lấy thông tin Product theo ID
+      parameters:
+      - description: San pham
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetProductById'
+          type: object
       responses:
         "200":
           description: OK
