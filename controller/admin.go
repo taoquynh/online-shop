@@ -69,10 +69,10 @@ func (c *Controller) UserLogIn(ctx *gin.Context) {
 		return
 	}
 	username := ctx.Param("username")
+	password := ctx.Param("password")
+
 	var user model.UserLogIn
-
-
-	_, erro := c.DB.Query(&user, `SELECT * FROM shop.users WHERE username = ?`, username)
+	_, erro := c.DB.Query(&user, `SELECT FROM shop.users WHERE username = ? AND password = ?`, username, password)
 	if erro != nil {
 		model.NewError(ctx, http.StatusNotFound, errors.New("Tai khoan khong dung"))
 		return
@@ -80,13 +80,6 @@ func (c *Controller) UserLogIn(ctx *gin.Context) {
 
 	ctx.String(http.StatusOK, "Dang nhap thanh cong")
 
-	//var user model.UserLogIn
-	//err := c.DB.Model(&user).Select()
-	//if err != nil {
-	//	log.Fatalln(err)
-	//}
-	//ctx.String(http.StatusOK, "Login thanh cong")
-	//return
 }
 
 //-----
