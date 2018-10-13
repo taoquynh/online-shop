@@ -83,22 +83,43 @@ func (c *Controller) CreateProduct(ctx *gin.Context) {
 }
 
 // @Tags admin
+// @Description Cập nhật Product theo ID
+// @Param product body model.UpdateProductById true "Thông tin san pham"
+// @Success 200 {string} string
+// @Failure 404 {object} model.HTTPError
+// @Failure 500 {object} model.HTTPError
+// @Router /shop/update-product/{id} [put]
+func (c *Controller) UpdateProductById(ctx *gin.Context) {
+	var product model.UpdateProductById
+	err := ctx.ShouldBindJSON(&product)
+	if err != nil {
+		model.NewError(ctx, http.StatusBadRequest, err)
+		return
+	}
+
+	var updateProduct model.Product
+	copier.Copy(&updateProduct, &product)
+	err = c.DB.Update(&updateProduct)
+	if err != nil {
+		model.NewError(ctx, http.StatusBadRequest, errors.New("Khong the cap nhat san pham"))
+		return
+
+	}
+
+	ctx.String(http.StatusOK, "cap nhat thanh cong")
+}
+
+// @Tags admin
 // @Description Lấy thông tin Product theo ID
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
 // @Router /shop/get-product/{id} [get]
 func (c *Controller) GetProductById(ctx *gin.Context) {
+
+
 }
 
-// @Tags admin
-// @Description Cập nhật Product theo ID
-// @Success 200 {string} string
-// @Failure 404 {object} model.HTTPError
-// @Failure 500 {object} model.HTTPError
-// @Router /shop/update-product/{id} [put]
-func (c *Controller) UpdateProductById(ctx *gin.Context) {
-}
 
 // @Tags admin
 // @Description Xóa Product theo ID

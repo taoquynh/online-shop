@@ -37,6 +37,30 @@ definitions:
       message:
         type: string
     type: object
+  model.UpdateProductById:
+    properties:
+      description:
+        description: Mô tả sản phẩm
+        type: string
+      id:
+        description: Mã User (chuỗi ngẫu nhiên duy nhất)
+        type: string
+      image:
+        description: Ảnh sản phẩm
+        type: string
+      manufacture:
+        description: Hãng sản xuất
+        type: string
+      name:
+        description: Tên hiển thị
+        type: string
+      price:
+        description: Giá sản phẩm
+        type: integer
+      quantity:
+        description: Số lượng
+        type: integer
+    type: object
 host: '{{.Host}}'
 info:
   contact: {}
@@ -184,6 +208,14 @@ paths:
   /shop/update-product/{id}:
     put:
       description: Cập nhật Product theo ID
+      parameters:
+      - description: Thông tin san pham
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateProductById'
+          type: object
       responses:
         "200":
           description: OK
