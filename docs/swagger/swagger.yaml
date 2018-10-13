@@ -45,7 +45,7 @@ info:
   title: '{{.Title}}'
   version: '{{.Version}}'
 paths:
-  /auth/create-product:
+  /shop/create-product:
     post:
       description: Tạo Product
       parameters:
@@ -68,7 +68,7 @@ paths:
             type: object
       tags:
       - admin
-  /auth/create-user:
+  /shop/create-user:
     post:
       description: Register User
       parameters:
@@ -91,7 +91,7 @@ paths:
             type: object
       tags:
       - admin
-  /auth/delete-product/{id}:
+  /shop/delete-product/{id}:
     delete:
       description: Xóa Product theo ID
       responses:
@@ -111,7 +111,7 @@ paths:
             type: object
       tags:
       - admin
-  /auth/get-product/{id}:
+  /shop/get-product/{id}:
     get:
       description: Lấy thông tin Product theo ID
       responses:
@@ -131,7 +131,7 @@ paths:
             type: object
       tags:
       - admin
-  /auth/get-products:
+  /shop/get-products:
     get:
       description: Lấy danh sách Products
       responses:
@@ -146,7 +146,7 @@ paths:
             type: object
       tags:
       - admin
-  /auth/get-users:
+  /shop/get-users:
     get:
       description: Lấy danh sách User
       responses:
@@ -161,7 +161,7 @@ paths:
             type: object
       tags:
       - admin
-  /auth/login-user/{id}:
+  /shop/login-user/{id}:
     get:
       description: Login User theo ID
       responses:
@@ -181,7 +181,7 @@ paths:
             type: object
       tags:
       - admin
-  /auth/update-product/{id}:
+  /shop/update-product/{id}:
     put:
       description: Cập nhật Product theo ID
       responses:

@@ -1,9 +1,8 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 	_ "online-shop/model"
 )
 
@@ -11,7 +10,7 @@ import (
 // @Description Lấy danh sách User
 // @Success 200 {string} string
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/get-users [get]
+// @Router /shop/get-users [get]
 func (c *Controller) GetUsers(ctx *gin.Context) {
 	ctx.String(http.StatusOK, "GetUsers")
 }
@@ -21,8 +20,9 @@ func (c *Controller) GetUsers(ctx *gin.Context) {
 // @Param user body model.CreateUser true "Thông tin Register"
 // @Success 200 {string} string
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/create-user [post]
+// @Router /shop/create-user [post]
 func (c *Controller) CreateUser(ctx *gin.Context) {
+
 }
 
 // @Tags admin
@@ -30,7 +30,7 @@ func (c *Controller) CreateUser(ctx *gin.Context) {
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/login-user/{id} [get]
+// @Router /shop/login-user/{id} [get]
 func (c *Controller) GetLogInUserById(ctx *gin.Context) {
 }
 
@@ -40,7 +40,7 @@ func (c *Controller) GetLogInUserById(ctx *gin.Context) {
 // @Description Lấy danh sách Products
 // @Success 200 {string} string
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/get-products [get]
+// @Router /shop/get-products [get]
 func (c *Controller) GetProducts(ctx *gin.Context) {
 	ctx.String(http.StatusOK, "GetProducts")
 }
@@ -50,7 +50,7 @@ func (c *Controller) GetProducts(ctx *gin.Context) {
 // @Param user body model.CreateProduct true "Thông tin tạo sản phẩm"
 // @Success 200 {string} string
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/create-product [post]
+// @Router /shop/create-product [post]
 func (c *Controller) CreateProduct(ctx *gin.Context) {
 }
 
@@ -59,7 +59,7 @@ func (c *Controller) CreateProduct(ctx *gin.Context) {
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/get-product/{id} [get]
+// @Router /shop/get-product/{id} [get]
 func (c *Controller) GetProductById(ctx *gin.Context) {
 }
 
@@ -68,7 +68,7 @@ func (c *Controller) GetProductById(ctx *gin.Context) {
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/update-product/{id} [put]
+// @Router /shop/update-product/{id} [put]
 func (c *Controller) UpdateProductById(ctx *gin.Context) {
 }
 
@@ -77,7 +77,7 @@ func (c *Controller) UpdateProductById(ctx *gin.Context) {
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
-// @Router /auth/delete-product/{id} [delete]
+// @Router /shop/delete-product/{id} [delete]
 func (c *Controller) DeleteProductById(ctx *gin.Context) {
 	ctx.String(http.StatusOK, "DeleteProductById")
 }

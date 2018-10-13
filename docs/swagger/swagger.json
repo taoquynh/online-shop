@@ -10,7 +10,7 @@
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/auth/create-product": {
+        "/shop/create-product": {
             "post": {
                 "description": "Tạo Product",
                 "tags": [
@@ -45,7 +45,7 @@
                 }
             }
         },
-        "/auth/create-user": {
+        "/shop/create-user": {
             "post": {
                 "description": "Register User",
                 "tags": [
@@ -80,7 +80,7 @@
                 }
             }
         },
-        "/auth/delete-product/{id}": {
+        "/shop/delete-product/{id}": {
             "delete": {
                 "description": "Xóa Product theo ID",
                 "tags": [
@@ -110,7 +110,7 @@
                 }
             }
         },
-        "/auth/get-product/{id}": {
+        "/shop/get-product/{id}": {
             "get": {
                 "description": "Lấy thông tin Product theo ID",
                 "tags": [
@@ -140,7 +140,7 @@
                 }
             }
         },
-        "/auth/get-products": {
+        "/shop/get-products": {
             "get": {
                 "description": "Lấy danh sách Products",
                 "tags": [
@@ -163,7 +163,7 @@
                 }
             }
         },
-        "/auth/get-users": {
+        "/shop/get-users": {
             "get": {
                 "description": "Lấy danh sách User",
                 "tags": [
@@ -186,7 +186,7 @@
                 }
             }
         },
-        "/auth/login-user/{id}": {
+        "/shop/login-user/{id}": {
             "get": {
                 "description": "Login User theo ID",
                 "tags": [
@@ -216,7 +216,7 @@
                 }
             }
         },
-        "/auth/update-product/{id}": {
+        "/shop/update-product/{id}": {
             "put": {
                 "description": "Cập nhật Product theo ID",
                 "tags": [
