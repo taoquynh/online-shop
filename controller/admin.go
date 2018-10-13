@@ -175,7 +175,7 @@ func (c *Controller) GetProductById(ctx *gin.Context) {
 	var products []model.GetProductById
 	_, err := c.DB.Query(&products, `SELECT * FROM shop.products WHERE id = ?`, id)
 	if err != nil {
-		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co sản phẩm"))
+		model.NewError(ctx, http.StatusNotFound, errors.New("Không có sản phẩm"))
 		return
 	}
 	ctx.JSON(http.StatusOK, products)
