@@ -85,6 +85,15 @@ definitions:
         description: Số lượng
         type: integer
     type: object
+  model.UserLogIn:
+    properties:
+      password:
+        description: Mật khẩu phải có tối thiểu 8 ký tự
+        type: string
+      username:
+        description: Tên hiển thị
+        type: string
+    type: object
 host: '{{.Host}}'
 info:
   contact: {}
@@ -217,9 +226,17 @@ paths:
             type: object
       tags:
       - admin
-  /shop/login-user/{id}:
+  /shop/login-user/:
     post:
-      description: Login User theo ID
+      description: Login User theo username
+      parameters:
+      - description: Dang nhap
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserLogIn'
+          type: object
       responses:
         "200":
           description: OK

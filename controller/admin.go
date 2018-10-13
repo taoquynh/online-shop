@@ -5,19 +5,11 @@ import (
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"github.com/rs/xid"
+	"log"
 	"net/http"
 	"online-shop/model"
 	_ "online-shop/model"
 )
-
-// @Tags admin
-// @Description Lấy danh sách User
-// @Success 200 {string} string
-// @Failure 500 {object} model.HTTPError
-// @Router /shop/get-users [get]
-func (c *Controller) GetUsers(ctx *gin.Context) {
-	ctx.String(http.StatusOK, "GetUsers")
-}
 
 // @Tags admin
 // @Description Register User
@@ -26,16 +18,75 @@ func (c *Controller) GetUsers(ctx *gin.Context) {
 // @Failure 500 {object} model.HTTPError
 // @Router /shop/create-user [post]
 func (c *Controller) CreateUser(ctx *gin.Context) {
+	var user model.CreateUser
+	err := ctx.ShouldBindJSON(&user)
+	if err != nil {
+		model.NewError(ctx, http.StatusBadRequest, err)
+		return
+	}
 
+	var newUser model.User
+	copier.Copy(&newUser, &user)
+	newUser.Id = xid.New().String()
+	err = c.DB.Insert(&newUser)
+	if err != nil {
+		log.Println((err.Error()))
+		model.NewError(ctx, http.StatusBadRequest, errors.New("Khong the tao user"))
+		return
+
+	}
+
+	ctx.String(http.StatusOK, "tao thanh cong")
+}
+// @Tags admin
+// @Description Lấy danh sách User
+// @Success 200 {string} string
+// @Failure 500 {object} model.HTTPError
+// @Router /shop/get-users [get]
+func (c *Controller) GetUsers(ctx *gin.Context) {
+	var users []model.GetUsers
+	_, err := c.DB.Query(&users, `SELECT * FROM shop.users`)
+	if err != nil {
+		log.Println(err)
+		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co user"))
+		return
+	}
+	ctx.JSON(http.StatusOK, users)
 }
 
 // @Tags admin
-// @Description Login User theo ID
+// @Description Login User theo username
+// @Param user body model.UserLogIn true "Dang nhap"
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
-// @Router /shop/login-user/{id} [post]
-func (c *Controller) PostLogInUserById(ctx *gin.Context) {
+// @Router /shop/login-user/ [post]
+func (c *Controller) UserLogIn(ctx *gin.Context) {
+	var login model.UserLogIn
+	err := ctx.ShouldBindJSON(&login)
+	if err != nil {
+		model.NewError(ctx, http.StatusBadRequest, err)
+		return
+	}
+	username := ctx.Param("username")
+	var user model.UserLogIn
+
+
+	_, erro := c.DB.Query(&user, `SELECT * FROM shop.users WHERE username = ?`, username)
+	if erro != nil {
+		model.NewError(ctx, http.StatusNotFound, errors.New("Tai khoan khong dung"))
+		return
+	}
+
+	ctx.String(http.StatusOK, "Dang nhap thanh cong")
+
+	//var user model.UserLogIn
+	//err := c.DB.Model(&user).Select()
+	//if err != nil {
+	//	log.Fatalln(err)
+	//}
+	//ctx.String(http.StatusOK, "Login thanh cong")
+	//return
 }
 
 //-----
@@ -156,3 +207,5 @@ func (c *Controller) DeleteProductById(ctx *gin.Context) {
 
 	ctx.String(http.StatusOK, "Xoa thanh cong")
 }
+
+// c.DB.Exec(`SELECT FROM shop.users WHERE`)

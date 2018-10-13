@@ -198,11 +198,23 @@
                 }
             }
         },
-        "/shop/login-user/{id}": {
+        "/shop/login-user/": {
             "post": {
-                "description": "Login User theo ID",
+                "description": "Login User theo username",
                 "tags": [
                     "admin"
+                ],
+                "parameters": [
+                    {
+                        "description": "Dang nhap",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.UserLogIn"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -388,6 +400,19 @@
                 "quantity": {
                     "description": "Số lượng",
                     "type": "integer"
+                }
+            }
+        },
+        "model.UserLogIn": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "description": "Mật khẩu phải có tối thiểu 8 ký tự",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "Tên hiển thị",
+                    "type": "string"
                 }
             }
         }
