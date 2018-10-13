@@ -2,7 +2,11 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
+	"github.com/rs/xid"
 	"net/http"
+	"online-shop/model"
 	_ "online-shop/model"
 )
 
@@ -30,8 +34,8 @@ func (c *Controller) CreateUser(ctx *gin.Context) {
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
-// @Router /shop/login-user/{id} [get]
-func (c *Controller) GetLogInUserById(ctx *gin.Context) {
+// @Router /shop/login-user/{id} [post]
+func (c *Controller) PostLogInUserById(ctx *gin.Context) {
 }
 
 //-----
@@ -52,6 +56,30 @@ func (c *Controller) GetProducts(ctx *gin.Context) {
 // @Failure 500 {object} model.HTTPError
 // @Router /shop/create-product [post]
 func (c *Controller) CreateProduct(ctx *gin.Context) {
+	var product model.CreateProduct
+	err := ctx.ShouldBindJSON(&product)
+	if err != nil {
+		model.NewError(ctx, http.StatusBadRequest, err)
+		return
+	}
+
+	var newProduct model.Product
+	/*newProduct.Description = product.Description
+	newProduct.Image = product.Image
+	newProduct.Manufacture = product.Manufacture
+	newProduct.Price = product.Price
+	newProduct.ProductName = product.ProductName
+	newProduct.Quantity = product.Quantity*/
+	copier.Copy(&newProduct, &product)
+	newProduct.Id = xid.New().String()
+	err = c.DB.Insert(&newProduct)
+	if err != nil {
+		model.NewError(ctx, http.StatusBadRequest, errors.New("Khong the tao product"))
+			return
+
+	}
+
+	ctx.String(http.StatusOK, "thanh cong")
 }
 
 // @Tags admin

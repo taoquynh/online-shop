@@ -162,7 +162,7 @@ paths:
       tags:
       - admin
   /shop/login-user/{id}:
-    get:
+    post:
       description: Login User theo ID
       responses:
         "200":

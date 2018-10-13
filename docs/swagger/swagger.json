@@ -187,7 +187,7 @@
             }
         },
         "/shop/login-user/{id}": {
-            "get": {
+            "post": {
                 "description": "Login User theo ID",
                 "tags": [
                     "admin"

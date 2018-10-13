@@ -9,7 +9,7 @@ import (
 func setupAdminRoutes(c *controller.Controller, api *gin.RouterGroup) {
 	api.GET("/get-users", c.GetUsers)
 	api.POST("/create-user", c.CreateUser)
-	api.GET("/get-login/:id", c.GetLogInUserById)
+	api.GET("/get-login/:id", c.PostLogInUserById)
 
 
 	api.GET("/get-products", c.GetProducts)
