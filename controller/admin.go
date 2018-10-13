@@ -31,12 +31,12 @@ func (c *Controller) CreateUser(ctx *gin.Context) {
 	err = c.DB.Insert(&newUser)
 	if err != nil {
 		log.Println((err.Error()))
-		model.NewError(ctx, http.StatusBadRequest, errors.New("Khong the tao user"))
+		model.NewError(ctx, http.StatusBadRequest, errors.New("Không thể tạo user"))
 		return
 
 	}
 
-	ctx.String(http.StatusOK, "tao thanh cong")
+	ctx.String(http.StatusOK, "Tạo user thành công")
 }
 // @Tags admin
 // @Description Lấy danh sách User
@@ -48,7 +48,7 @@ func (c *Controller) GetUsers(ctx *gin.Context) {
 	_, err := c.DB.Query(&users, `SELECT * FROM shop.users`)
 	if err != nil {
 		log.Println(err)
-		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co user"))
+		model.NewError(ctx, http.StatusNotFound, errors.New("Không có user"))
 		return
 	}
 	ctx.JSON(http.StatusOK, users)
@@ -56,7 +56,7 @@ func (c *Controller) GetUsers(ctx *gin.Context) {
 
 // @Tags admin
 // @Description Login User theo username
-// @Param user body model.UserLogIn true "Dang nhap"
+// @Param user body model.UserLogIn true "Đăng nhập"
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
@@ -68,23 +68,29 @@ func (c *Controller) UserLogIn(ctx *gin.Context) {
 		model.NewError(ctx, http.StatusBadRequest, err)
 		return
 	}
-	username := ctx.Param("username")
-	password := ctx.Param("password")
 
-	var user model.UserLogIn
-	_, erro := c.DB.Query(&user, `SELECT FROM shop.users WHERE username = ? AND password = ?`, username, password)
-	if erro != nil {
-		model.NewError(ctx, http.StatusNotFound, errors.New("Tai khoan khong dung"))
+	var user model.User
+	rs, err := c.DB.Query(&user, `SELECT * FROM shop.users WHERE username = ?`, login.Username)
+	if err != nil {
+		log.Println(err)
+		model.NewError(ctx, http.StatusNotFound, err)
+		return
+	}
+	log.Println(login)
+
+	if rs.RowsReturned() == 0 {
+		model.NewError(ctx, http.StatusNotFound, errors.New("Tài khoản không tồn tại"))
 		return
 	}
 
-	ctx.String(http.StatusOK, "Dang nhap thanh cong")
+	if login.Password != login.Password {
+		model.NewError(ctx, http.StatusNotFound, errors.New("Tài khoản không đúng"))
+		return
+	}
+
+	ctx.String(http.StatusOK, "Đăng nhập thành công")
 
 }
-
-//-----
-
-
 
 // @Tags admin
 // @Description Tạo Product
@@ -101,27 +107,21 @@ func (c *Controller) CreateProduct(ctx *gin.Context) {
 	}
 
 	var newProduct model.Product
-	/*newProduct.Description = product.Description
-	newProduct.Image = product.Image
-	newProduct.Manufacture = product.Manufacture
-	newProduct.Price = product.Price
-	newProduct.ProductName = product.ProductName
-	newProduct.Quantity = product.Quantity*/
 	copier.Copy(&newProduct, &product)
 	newProduct.Id = xid.New().String()
 	err = c.DB.Insert(&newProduct)
 	if err != nil {
-		model.NewError(ctx, http.StatusBadRequest, errors.New("Khong the tao product"))
+		model.NewError(ctx, http.StatusBadRequest, errors.New("Không thể thêm sản phẩm"))
 			return
 
 	}
 
-	ctx.String(http.StatusOK, "thanh cong")
+	ctx.String(http.StatusOK, "Thêm sản phẩm thành công")
 }
 
 // @Tags admin
 // @Description Cập nhật Product theo ID
-// @Param product body model.UpdateProductById true "Thông tin san pham"
+// @Param product body model.UpdateProductById true "Thông tin sản phẩm"
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
@@ -138,12 +138,12 @@ func (c *Controller) UpdateProductById(ctx *gin.Context) {
 	copier.Copy(&updateProduct, &product)
 	err = c.DB.Update(&updateProduct)
 	if err != nil {
-		model.NewError(ctx, http.StatusBadRequest, errors.New("Khong the cap nhat san pham"))
+		model.NewError(ctx, http.StatusBadRequest, errors.New("Không thể cập nhật sản phẩm"))
 		return
 
 	}
 
-	ctx.String(http.StatusOK, "cap nhat thanh cong")
+	ctx.String(http.StatusOK, "Cập nhật thành công")
 }
 
 // @Tags admin
@@ -155,7 +155,7 @@ func (c *Controller) GetProducts(ctx *gin.Context) {
 	var products []model.GetProducts
 	_, err := c.DB.Query(&products, `SELECT * FROM shop.products`)
 	if err != nil {
-		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co product"))
+		model.NewError(ctx, http.StatusNotFound, errors.New("Không có sản phẩm"))
 		return
 	}
 	ctx.JSON(http.StatusOK, products)
@@ -164,7 +164,7 @@ func (c *Controller) GetProducts(ctx *gin.Context) {
 
 // @Tags admin
 // @Description Lấy thông tin Product theo ID
-// @Param product body model.GetProductById true "San pham"
+// @Param product body model.GetProductById true "Sản phẩm"
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
@@ -175,7 +175,7 @@ func (c *Controller) GetProductById(ctx *gin.Context) {
 	var products []model.GetProductById
 	_, err := c.DB.Query(&products, `SELECT * FROM shop.products WHERE id = ?`, id)
 	if err != nil {
-		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co product"))
+		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co sản phẩm"))
 		return
 	}
 	ctx.JSON(http.StatusOK, products)
@@ -194,11 +194,9 @@ func (c *Controller) DeleteProductById(ctx *gin.Context) {
 
 	_, err := c.DB.Exec(`DELETE FROM shop.products WHERE id = ?`, id)
 	if err != nil {
-		model.NewError(ctx, http.StatusNotFound, errors.New("Khong co product"))
+		model.NewError(ctx, http.StatusNotFound, errors.New("Không có sản phẩm"))
 		return
 	}
 
-	ctx.String(http.StatusOK, "Xoa thanh cong")
+	ctx.String(http.StatusOK, "Xóa sản phẩm thành công")
 }
-
-// c.DB.Exec(`SELECT FROM shop.users WHERE`)

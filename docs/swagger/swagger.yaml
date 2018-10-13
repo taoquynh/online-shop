@@ -172,7 +172,7 @@ paths:
     get:
       description: Lấy thông tin Product theo ID
       parameters:
-      - description: San pham
+      - description: Sản phẩm
         in: body
         name: product
         required: true
@@ -230,7 +230,7 @@ paths:
     post:
       description: Login User theo username
       parameters:
-      - description: Dang nhap
+      - description: Đăng nhập
         in: body
         name: user
         required: true
@@ -258,7 +258,7 @@ paths:
     put:
       description: Cập nhật Product theo ID
       parameters:
-      - description: Thông tin san pham
+      - description: Thông tin sản phẩm
         in: body
         name: product
         required: true

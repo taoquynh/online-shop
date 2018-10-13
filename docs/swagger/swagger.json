@@ -118,7 +118,7 @@
                 ],
                 "parameters": [
                     {
-                        "description": "San pham",
+                        "description": "Sản phẩm",
                         "name": "product",
                         "in": "body",
                         "required": true,
@@ -206,7 +206,7 @@
                 ],
                 "parameters": [
                     {
-                        "description": "Dang nhap",
+                        "description": "Đăng nhập",
                         "name": "user",
                         "in": "body",
                         "required": true,
@@ -248,7 +248,7 @@
                 ],
                 "parameters": [
                     {
-                        "description": "Thông tin san pham",
+                        "description": "Thông tin sản phẩm",
                         "name": "product",
                         "in": "body",
                         "required": true,
