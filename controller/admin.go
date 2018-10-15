@@ -29,6 +29,7 @@ func (c *Controller) CreateUser(ctx *gin.Context) {
 	copier.Copy(&newUser, &user)
 	newUser.Id = xid.New().String()
 	err = c.DB.Insert(&newUser)
+
 	if err != nil {
 		log.Println((err.Error()))
 		model.NewError(ctx, http.StatusBadRequest, errors.New("Không thể tạo user"))
@@ -60,7 +61,7 @@ func (c *Controller) GetUsers(ctx *gin.Context) {
 // @Success 200 {string} string
 // @Failure 404 {object} model.HTTPError
 // @Failure 500 {object} model.HTTPError
-// @Router /shop/login-user/ [post]
+// @Router /shop/login-user [post]
 func (c *Controller) UserLogIn(ctx *gin.Context) {
 	var login model.UserLogIn
 	err := ctx.ShouldBindJSON(&login)

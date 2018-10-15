@@ -2,14 +2,13 @@ package main
 
 import (
 	"github.com/gin-contrib/cors"
-	"log"
-	"os"
-
 	"github.com/gin-gonic/gin"
+	"log"
 	"online-shop/config"
 	"online-shop/controller"
 	"online-shop/model"
 	"online-shop/router"
+	"os"
 )
 
 func main() {
@@ -25,7 +24,7 @@ func main() {
 
 	//r := setupMiddleware(ginMode)
 	r.Use(cors.Default())
-
+	
 	// Kết nối CSDL
 	dbConfig := config.Database
 	db := model.ConnectDb(dbConfig.User, dbConfig.Password, dbConfig.Database, dbConfig.Address)

@@ -11,7 +11,6 @@ func setupAdminRoutes(c *controller.Controller, api *gin.RouterGroup) {
 	api.POST("/create-user", c.CreateUser)
 	api.POST("/login-user", c.UserLogIn)
 
-
 	api.GET("/get-products", c.GetProducts)
 	api.POST("/create-product", c.CreateProduct)
 	api.GET("/get-product/:id", c.GetProductById)

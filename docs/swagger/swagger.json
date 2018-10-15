@@ -198,7 +198,7 @@
                 }
             }
         },
-        "/shop/login-user/": {
+        "/shop/login-user": {
             "post": {
                 "description": "Login User theo username",
                 "tags": [
@@ -295,7 +295,7 @@
                     "description": "Ảnh sản phẩm",
                     "type": "string"
                 },
-                "manufacture": {
+                "manufacturer": {
                     "description": "Hãng sản xuất",
                     "type": "string"
                 },
@@ -341,7 +341,7 @@
                     "description": "Ảnh sản phẩm",
                     "type": "string"
                 },
-                "manufacture": {
+                "manufacturer": {
                     "description": "Hãng sản xuất",
                     "type": "string"
                 },
@@ -385,7 +385,7 @@
                     "description": "Ảnh sản phẩm",
                     "type": "string"
                 },
-                "manufacture": {
+                "manufacturer": {
                     "description": "Hãng sản xuất",
                     "type": "string"
                 },

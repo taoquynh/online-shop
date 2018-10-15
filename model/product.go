@@ -11,7 +11,7 @@ type Product struct {
 	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
-	Manufacture string `json:"manufacture"`
+	Manufacturer string `json:"manufacturer"`
 
 	// Giá sản phẩm
 	Price float64 `json:"price"`
@@ -31,7 +31,7 @@ type CreateProduct struct {
 	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
-	Manufacture string `json:"manufacture"`
+	Manufacturer string `json:"manufacturer"`
 
 	// Giá sản phẩm
 	Price float64 `json:"price"`
@@ -54,7 +54,7 @@ type UpdateProductById struct {
 	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
-	Manufacture string `json:"manufacture"`
+	Manufacturer string `json:"manufacturer"`
 
 	// Giá sản phẩm
 	Price float64 `json:"price"`
@@ -78,7 +78,7 @@ type GetProducts struct {
 	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
-	Manufacture string `json:"manufacture"`
+	Manufacturer string `json:"manufacturer"`
 
 	// Giá sản phẩm
 	Price float64 `json:"price"`
@@ -101,7 +101,7 @@ type GetProductById struct {
 	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
-	Manufacture string `json:"manufacture"`
+	Manufacturer string `json:"manufacturer"`
 
 	// Giá sản phẩm
 	Price float64 `json:"price"`
@@ -125,7 +125,7 @@ type DeleteProductById struct {
 	ProductName string `json:"name" valid:"required~Tên sản phẩm không được để trống,runelength(6|100)~Tên không hợp lệ (từ 6 - 100 ký tự)"`
 
 	// Hãng sản xuất
-	Manufacture string `json:"manufacture"`
+	Manufacturer string `json:"manufacturer"`
 
 	// Giá sản phẩm
 	Price float64 `json:"price"`
