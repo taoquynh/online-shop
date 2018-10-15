@@ -10,7 +10,7 @@ import (
 	"online-shop/model"
 	_ "online-shop/model"
 )
-
+// REGISTER USER
 // @Tags admin
 // @Description Register User
 // @Param user body model.CreateUser true "Thông tin Register"
@@ -39,6 +39,9 @@ func (c *Controller) CreateUser(ctx *gin.Context) {
 
 	ctx.String(http.StatusOK, "Tạo user thành công")
 }
+
+
+// ALL USERS
 // @Tags admin
 // @Description Lấy danh sách User
 // @Success 200 {string} string
@@ -55,6 +58,8 @@ func (c *Controller) GetUsers(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, users)
 }
 
+
+// USER - username
 // @Tags admin
 // @Description Login User theo username
 // @Param user body model.UserLogIn true "Đăng nhập"
@@ -93,6 +98,9 @@ func (c *Controller) UserLogIn(ctx *gin.Context) {
 
 }
 
+//----------------
+
+// CREATE PRODUCT
 // @Tags admin
 // @Description Tạo Product
 // @Param user body model.CreateProduct true "Thông tin tạo sản phẩm"
@@ -120,6 +128,8 @@ func (c *Controller) CreateProduct(ctx *gin.Context) {
 	ctx.String(http.StatusOK, "Thêm sản phẩm thành công")
 }
 
+
+// UPDATE PRODUCT - ID
 // @Tags admin
 // @Description Cập nhật Product theo ID
 // @Param product body model.UpdateProductById true "Thông tin sản phẩm"
@@ -147,6 +157,8 @@ func (c *Controller) UpdateProductById(ctx *gin.Context) {
 	ctx.String(http.StatusOK, "Cập nhật thành công")
 }
 
+
+// SELECT PRODUCTS
 // @Tags admin
 // @Description Lấy danh sách Products
 // @Success 200 {string} string
@@ -163,6 +175,7 @@ func (c *Controller) GetProducts(ctx *gin.Context) {
 }
 
 
+// SELECT PRODUCT - ID
 // @Tags admin
 // @Description Lấy thông tin Product theo ID
 // @Param product body model.GetProductById true "Sản phẩm"
@@ -183,6 +196,7 @@ func (c *Controller) GetProductById(ctx *gin.Context) {
 }
 
 
+// DELETE PRODUCT - ID
 // @Tags admin
 // @Description Xóa Product theo ID
 // @Success 200 {string} string

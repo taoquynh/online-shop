@@ -27,12 +27,14 @@ func MigrationDb(db *pg.DB, schema string) error {
 	}
 
 	// Tạo bảng
+	//--User Table
 	var user User
 	err = createTable(&user, db)
 	if err != nil {
 		return err
 	}
 
+	//--Product Table
 	var product Product
 	err = createTable(&product, db)
 	if err != nil {
