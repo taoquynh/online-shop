@@ -1,9 +1,6 @@
 package model
 
 import (
-	"log"
-	"time"
-
 	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
 )
@@ -42,17 +39,6 @@ func MigrationDb(db *pg.DB, schema string) error {
 	}
 
 	return nil
-}
-
-func LogQueryToConsole(db *pg.DB) {
-	db.OnQueryProcessed(func(event *pg.QueryProcessedEvent) {
-		query, err := event.FormattedQuery()
-		if err != nil {
-			panic(err)
-		}
-
-		log.Printf("%s %s", time.Since(event.StartTime), query)
-	})
 }
 
 func createTable(model interface{}, db *pg.DB) error {
