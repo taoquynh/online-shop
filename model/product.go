@@ -14,7 +14,7 @@ type Product struct {
 	Manufacture string `json:"manufacture"`
 
 	// Giá sản phẩm
-	Price int32 `json:"price"`
+	Price float64 `json:"price"`
 
 	// Số lượng
 	Quantity int16 `json:"quantity" valid:"required~Số lượng sản phẩm không được để trống"`
@@ -34,7 +34,7 @@ type CreateProduct struct {
 	Manufacture string `json:"manufacture"`
 
 	// Giá sản phẩm
-	Price int32 `json:"price"`
+	Price float64 `json:"price"`
 
 	// Số lượng
 	Quantity int16 `json:"quantity" valid:"required~Số lượng sản phẩm không được để trống"`
@@ -57,7 +57,7 @@ type UpdateProductById struct {
 	Manufacture string `json:"manufacture"`
 
 	// Giá sản phẩm
-	Price int32 `json:"price"`
+	Price float64 `json:"price"`
 
 	// Số lượng
 	Quantity int16 `json:"quantity" valid:"required~Số lượng sản phẩm không được để trống"`
@@ -81,7 +81,7 @@ type GetProducts struct {
 	Manufacture string `json:"manufacture"`
 
 	// Giá sản phẩm
-	Price int32 `json:"price"`
+	Price float64 `json:"price"`
 
 	// Số lượng
 	Quantity int16 `json:"quantity" valid:"required~Số lượng sản phẩm không được để trống"`
@@ -104,7 +104,7 @@ type GetProductById struct {
 	Manufacture string `json:"manufacture"`
 
 	// Giá sản phẩm
-	Price int32 `json:"price"`
+	Price float64 `json:"price"`
 
 	// Số lượng
 	Quantity int16 `json:"quantity" valid:"required~Số lượng sản phẩm không được để trống"`
@@ -128,7 +128,7 @@ type DeleteProductById struct {
 	Manufacture string `json:"manufacture"`
 
 	// Giá sản phẩm
-	Price int32 `json:"price"`
+	Price float64 `json:"price"`
 
 	// Số lượng
 	Quantity int16 `json:"quantity" valid:"required~Số lượng sản phẩm không được để trống"`

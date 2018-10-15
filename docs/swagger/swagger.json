@@ -305,7 +305,7 @@
                 },
                 "price": {
                     "description": "Giá sản phẩm",
-                    "type": "integer"
+                    "type": "number"
                 },
                 "quantity": {
                     "description": "Số lượng",
@@ -351,7 +351,7 @@
                 },
                 "price": {
                     "description": "Giá sản phẩm",
-                    "type": "integer"
+                    "type": "number"
                 },
                 "quantity": {
                     "description": "Số lượng",
@@ -395,7 +395,7 @@
                 },
                 "price": {
                     "description": "Giá sản phẩm",
-                    "type": "integer"
+                    "type": "number"
                 },
                 "quantity": {
                     "description": "Số lượng",

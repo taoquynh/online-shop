@@ -16,7 +16,7 @@ definitions:
         type: string
       price:
         description: Giá sản phẩm
-        type: integer
+        type: number
       quantity:
         description: Số lượng
         type: integer
@@ -49,7 +49,7 @@ definitions:
         type: string
       price:
         description: Giá sản phẩm
-        type: integer
+        type: number
       quantity:
         description: Số lượng
         type: integer
@@ -80,7 +80,7 @@ definitions:
         type: string
       price:
         description: Giá sản phẩm
-        type: integer
+        type: number
       quantity:
         description: Số lượng
         type: integer
